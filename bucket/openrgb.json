@@ -26,16 +26,16 @@
     ],
     "checkver": {
         "url": "https://codeberg.org/api/v1/repos/OpenRGB/OpenRGB/releases/latest",
-        "jsonpath": "$.tag_name",
-        "regex": "release_([\\d.]+)"
+        "jsonpath": "$.assets[*].browser_download_url",
+        "regex": "OpenRGB_([\\d.]+)_Windows_64_(?<commit>[a-fA-F0-9]+)\\.zip"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_$version/OpenRGB_$version_Windows_64_81bbe18.zip"
+                "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_$version/OpenRGB_$version_Windows_64_$matchCommit.zip"
             },
             "32bit": {
-                "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_$version/OpenRGB_$version_Windows_32_81bbe18.zip"
+                "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_$version/OpenRGB_$version_Windows_32_$matchCommit.zip"
             }
         }
     }
